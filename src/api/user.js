@@ -4,6 +4,7 @@ const registerUser = ({ names, surnames, googleId, mail }) => {
   try {
     const res = _fetchApi({
       url: "user/register",
+      method: "POST",
       data: {
         surnames,
         googleId,
@@ -18,4 +19,19 @@ const registerUser = ({ names, surnames, googleId, mail }) => {
   }
 };
 
-export const _fechUser = { registerUser };
+const getUserGoogleId = async ({ googleId }) => {
+  try {
+    const res = await _fetchApi({
+      url: "user/get-google-id",
+      params: {
+        googleId,
+      },
+    });
+    if (res.success) return res.data;
+    else throw res.message;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const _fechUser = { registerUser, getUserGoogleId };

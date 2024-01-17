@@ -8,7 +8,7 @@ export const _fetchApi = ({ url, data = {}, params = {}, headers = {}, method = 
     method,
     headers: {
       ...headers,
-        // Authorization: `Bearer ${localStorage.token}`,
+      // Authorization: `Bearer ${localStorage.token}`,
     },
     data, //Enviar body
     params, //Usarlo para peticiones GET
@@ -22,7 +22,6 @@ export const _fetchApi = ({ url, data = {}, params = {}, headers = {}, method = 
     axios(config)
       .then((res) => {
         resolve(res.data);
-        console.log("💠  res.data--> ", res.data)
       })
       .catch((error) => {
         reject(httpError(error));
