@@ -2,12 +2,14 @@ import GoogleLogin from "react-google-login";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { gapi } from "gapi-script";
-import "../../../src/index.css";
+import { _fechUser } from "@/api";
+import "@/src/index.css";
 import { Modal } from "antd";
 
 const Login = ({ closeLogin }) => {
-  const navigate = useNavigate();
   const clientId = "1059518119572-1fl0ujdrjpi8e64eaifo092l7h7mvc10.apps.googleusercontent.com";
+  const navigate = useNavigate();
+
   useEffect(() => {
     const start = () => {
       gapi.auth2.init({
@@ -18,10 +20,29 @@ const Login = ({ closeLogin }) => {
     gapi.load("client:auth2", start);
   }, []);
 
-  const onSuccess = (res) => {
-    console.log("🟢 response --> ", res);
-    closeLogin();
-    return navigate("/panel");
+  const onSuccess = async (data) => {
+    try {
+      const res = await _fechUser.getUserGoogleId({ googleId: data.googleId });
+
+      res ?? (await createUser(data.profileObj));
+      closeLogin();
+      return navigate("/panel");
+    } catch (error) {
+      console.log("💠  error--> ", error);
+    }
+  };
+
+  const createUser = async (data) => {
+    try {
+      await _fechUser.registerUser({
+        names: data.givenName,
+        surnames: data.familyName,
+        googleId: data.googleId,
+        mail: data.email,
+      });
+    } catch (error) {
+      throw error;
+    }
   };
 
   const onFailure = (err) => {
