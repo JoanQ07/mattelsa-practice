@@ -2,7 +2,7 @@ import httpError from "./errorHttp";
 import axios from "axios";
 
 export const _fetchApi = ({ url, data = {}, params = {}, headers = {}, method = "GET", loader = true }) => {
-  const baseUrl = `http://localhost:3001/${url}`;
+  const baseUrl = `http://localhost:3000/${url}`;
   const config = {
     url: baseUrl,
     method,

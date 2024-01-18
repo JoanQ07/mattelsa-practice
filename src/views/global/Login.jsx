@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { gapi } from "gapi-script";
 import { _fechUser } from "@/api";
-import "@/src/index.css";
+import "../../index.css";
 import { Modal } from "antd";
 
 const Login = ({ closeLogin }) => {
