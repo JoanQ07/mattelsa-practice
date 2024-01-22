@@ -1,15 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-const menu = () => {
-  const listNav = [
-    { text: "Perfil", to: "profile", key: crypto.randomUUID() },
-    { text: "Direcciones", to: "addresses", key: crypto.randomUUID() },
-    { text: "Pedidos", to: "orders", key: crypto.randomUUID() },
-    { text: "Información", to: "", key: crypto.randomUUID() },
-    { text: "Cerrar sesión", to: "", key: crypto.randomUUID() },
-  ];
-
+const menu = ({ listNav }) => {
   const navigation = listNav.map((item) => (
     <Link className="p-3" to={item.to} key={item.key}>
       <span> {item.text} </span>

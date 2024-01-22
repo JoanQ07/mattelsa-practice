@@ -1,18 +1,17 @@
-import Addresses from '@/views/panel/user/Addresses';
-import Profile from '@/views/panel/user/Profile';
-import Orders from '@/views/panel/user/Orders';
+import HomePanelUser from "@/views/panel/user/Home";
+import HomeAdm from "@/views/panel/admin/HomeAdm";
+import { routesPanelUser } from "./panelUser";
+import { routesPanelAdm } from "./panelAdmin";
 
 export const routesPanel = [
   {
-    path: "profile",
-    element: <Profile />,
+    path: "user",
+    element: <HomePanelUser />,
+    children: [...routesPanelUser],
   },
   {
-    path: "orders",
-    element: <Orders />,
-  },
-  {
-    path: "addresses",
-    element: <Addresses />,
+    path: "admin",
+    element: <HomeAdm />,
+    children: [...routesPanelAdm],
   },
 ];

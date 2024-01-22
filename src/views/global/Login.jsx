@@ -23,9 +23,11 @@ const Login = ({ closeLogin }) => {
   const onSuccess = async (data) => {
     try {
       const res = await _fechUser.getUserGoogleId({ googleId: data.googleId });
+      console.log("💠  res--> ", res)
 
       res ?? (await createUser(data.profileObj));
       closeLogin();
+      if (res?.role == "admin") return navigate("/panel/admin");
       return navigate("/panel");
     } catch (error) {
       console.log("💠  error--> ", error);
