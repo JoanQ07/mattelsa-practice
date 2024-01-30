@@ -1,4 +1,4 @@
-import { Button, Modal, Input, Select } from "antd";
+import { Button, Modal, Input, Select, InputNumber } from "antd";
 import React, { useEffect, useState } from "react";
 import { _fechCategory } from "@/api";
 
@@ -8,24 +8,21 @@ const Create = ({ handleOk, handleCancel }) => {
   const getCategories = async () => {
     try {
       const res = await _fechCategory.getAllCategories();
-      setOpcCategory(res);
-      parseFormatOpc();
+      console.log("💠  res--> ", res);
+      const formattedOptions = parseFormatOpc(res);
+      setOpcCategory(formattedOptions);
+      console.log("💠  opcCategory--> ", opcCategory);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const parseFormatOpc = () => {
-    console.log("💠  opcCategory--> ", opcCategory);
-    const format = opcCategory.map((item) => {
-      return {
-        label: item.name,
-        value: item.id,
-      };
-    });
-    console.log("💠  format--> ", format);
-
-    setOpcCategory(format);
+  const parseFormatOpc = (categories) => {
+    const format = categories.map((item) => ({
+      label: item.name,
+      value: item.id,
+    }));
+    return format;
   };
 
   useEffect(() => {
@@ -42,17 +39,46 @@ const Create = ({ handleOk, handleCancel }) => {
       okButtonProps={false}
     >
       <form>
-        <div>
-          <label>Nombre</label>
-          <Input />
-          <Select
-            defaultValue={[opcCategory]}
-            style={{
-              width: 120,
-            }}
-            disabled
-            options={opcCategory}
-          />
+        <div className="flex flex-col gap-y-2">
+          <div>
+            <label>Nombre</label>
+            <Input />
+          </div>
+          <div className="flex flex-col">
+            <label>Categoria</label>
+            <Select
+              style={{
+                width: 200,
+              }}
+              options={opcCategory}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label>Precio unitario</label>
+            <InputNumber
+              style={{
+                width: 200,
+              }}
+              defaultValue={0}
+              formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+            />
+          </div>
+          <div className="flex gap-x-3">
+            {/* sizes */}
+            {["XS", "S", "M", "L"].map((item) => (
+              <div>
+                <label> {item} </label>
+                <InputNumber
+                  defaultValue={0}
+                  controls={false}
+                  style={{
+                    width: 65,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </form>
     </Modal>

@@ -1,9 +1,14 @@
-import React from "react";
+import ContainerProduct from "@/components/Man/ContainerProduct";
+import HeaderCategory from "@/components/category/HeaderCategory";
 
 const HomeMan = () => {
   return (
     <div>
-      <h1>HomeMan PRUEBA</h1>
+      <HeaderCategory
+        titulo="Ropa para hombre"
+        subtitulo="Ropa de hombre en nuestro sitio web y tiendas del país."
+      />
+      <ContainerProduct />
     </div>
   );
 };
