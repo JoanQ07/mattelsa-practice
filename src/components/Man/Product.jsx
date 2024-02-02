@@ -1,25 +1,22 @@
 import { useState } from "react";
-import '../../index.css';
+import "../../index.css";
 
-const Product = ({ children, product }) => {
+const Product = ({ product }) => {
   const imgDefault = `http://localhost:3000/static/${product.id}-img-01.webp`;
-  const imgHover = `http://localhost:3000/static/hover-oversizeh.webp`;
+  const imgHover =
+    product.classProduct == "oversizeh"
+      ? `http://localhost:3000/static/hover-oversizeh.webp`
+      : `http://localhost:3000/static/${product.id}-img-02.webp`;
 
   const [img, setImg] = useState(imgDefault);
 
-  const validClassProduct = () => (product.classProduct == "oversizeh" ? true : false);
-  
-  const leaveHover = () => {
-    validClassProduct() && setImg(imgDefault);
-  };
-
-  const enterHover = () => {
-    validClassProduct() && setImg(imgHover);
-  };
-
   return (
-    <div className="flex flex-col" onMouseEnter={enterHover} onMouseLeave={leaveHover}>
-      <img src={img}  className="user-drag"/>
+    <div
+      onMouseLeave={() => setImg(imgDefault)}
+      onMouseEnter={() => setImg(imgHover)}
+      className="flex flex-col"
+    >
+      <img src={img} className="user-drag" width={500}/>
       <span className="font-semibold capitalize">{product.classProduct}</span>
       <span className="text-sm text-zinc-700">{product.price} </span>
     </div>
