@@ -1,20 +1,22 @@
 import ShoppingCart from "@/components/global/ShoppingCart";
-import { Outlet } from "react-router-dom";
-import { useCar } from "@/store";
-import React from "react";
-
+import { ToastProvider } from "./context/contextToast";
 import NavBar from "@/components/global/NavBar";
 import Footer from "@/components/global/Footer";
+import { Outlet } from "react-router-dom";
+import { useCar } from "@/store";
+
 
 function App() {
   const { active } = useCar();
   return (
-    <div className="h-svh bg-[#F5F5F5]">
-      <NavBar />
-      {active && <ShoppingCart />}
-      <Outlet />
-      <Footer />
-    </div>
+    <ToastProvider>
+      <div className="h-svh bg-[#F5F5F5]">
+        <NavBar />
+        {active && <ShoppingCart />}
+        <Outlet />
+        <Footer />
+      </div>
+    </ToastProvider>
   );
 }
 

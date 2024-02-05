@@ -16,7 +16,7 @@ const Product = ({ product }) => {
       onMouseEnter={() => setImg(imgHover)}
       className="flex flex-col"
     >
-      <img src={img} className="user-drag" width={500}/>
+      <img src={img} className="user-drag hover:cursor-pointer" width={500}/>
       <span className="font-semibold capitalize">{product.classProduct}</span>
       <span className="text-sm text-zinc-700">{product.price} </span>
     </div>
