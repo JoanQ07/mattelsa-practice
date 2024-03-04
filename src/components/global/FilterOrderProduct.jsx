@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useProducts } from "@/store";
 
 const FilterOrderProduct = ({ style }) => {
-  const [selectedValue, setSelectedValue] = useState("relevancia");
+  const [selectedValue, setSelectedValue] = useState("none");
+  const { refreshProducts } = useProducts();
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
+  useEffect(() => {
+    selectedValue != "none" && refreshProducts({ orderBy: selectedValue });
+  }, [selectedValue]);
 
   return (
     <div className={`${style} flex justify-end`}>
@@ -17,7 +23,7 @@ const FilterOrderProduct = ({ style }) => {
         value={selectedValue}
         onChange={handleChange}
       >
-        <option value="relevancia">Relevancia</option>
+        <option value="none">Relevancia</option>
         <option value="desc">Mayor precio</option>
         <option value="asc">Menor precio</option>
       </select>

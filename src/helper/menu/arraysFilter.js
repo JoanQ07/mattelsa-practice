@@ -1,7 +1,7 @@
 export const listFilterMan = [
   {
-    name: "camiseta",
-    id: "camiseta",
+    name: "camisetas",
+    id: "camisetas",
   },
   {
     name: "shorts",

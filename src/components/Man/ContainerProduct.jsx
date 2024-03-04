@@ -7,8 +7,8 @@ import { useToast } from "@/hooks";
 const ContainerProduct = () => {
   const { openNotification } = useToast();
 
-  const products = useProducts((state) => state.products);
   const setProducts = useProducts((state) => state.setProducts);
+  const products = useProducts((state) => state.products);
 
   useEffect(() => {
     getFilterByClass();
