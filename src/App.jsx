@@ -10,7 +10,7 @@ function App() {
   const { active } = useCar();
   return (
     <ToastProvider>
-      <div className="h-svh bg-[#F5F5F5]">
+      <div>
         <NavBar />
         {active && <ShoppingCart />}
         <Outlet />
