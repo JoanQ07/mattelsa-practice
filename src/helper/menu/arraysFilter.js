@@ -31,4 +31,8 @@ export const listFilterMan = [
     name: "chaquetas",
     id: "chaquetas",
   },
+  {
+    name: "tanks",
+    id: "tanks",
+  },
 ];

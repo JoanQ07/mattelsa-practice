@@ -6,14 +6,14 @@ import { listFilterMan } from "@/helper/menu/arraysFilter";
 
 const HomeMan = () => {
   return (
-    <div className="">
+    <div>
       <HeaderCategory
         titulo="Ropa para hombre"
         subtitulo="Ropa de hombre en nuestro sitio web y tiendas del país."
       />
-      <div className="flex">
+      <div className="flex justify-center">
         <FilterClassProduct listFilter={listFilterMan} />
-        <div>
+        <div style={{ width: "75%"}}>
           <FilterOrderProduct style="px-5" />
           <ContainerProduct />
         </div>

@@ -1,7 +1,10 @@
 import BentoBox from "@/components/bento/BentoBox";
 import { ButtonIcon } from "@/components/global";
+import { useNavigate } from "react-router-dom";
 import React from "react";
+
 const MainBento = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-[90%] grid grid-cols-4 gap-2">
       <BentoBox className="flex items-center justify-center">
@@ -11,6 +14,7 @@ const MainBento = () => {
           alt="hombre category"
         />
         <ButtonIcon
+          action={() => navigate("/category/man")}
           properties={{
             text: "HOMBRE",
             styles: "hover:translate-x-1 border-2 p-2 absolute",
@@ -32,6 +36,7 @@ const MainBento = () => {
           alt="mujer category"
         />
         <ButtonIcon
+          action={() => navigate("/category/woman")}
           properties={{
             text: "MUJER",
             styles: "hover:translate-x-1 border-2 p-2 absolute",

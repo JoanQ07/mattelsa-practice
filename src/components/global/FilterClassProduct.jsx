@@ -22,6 +22,11 @@ const FilterClassProduct = ({ listFilter }) => {
     }
   };
 
+  const clearClass = () => {
+    setCatSelect([]);
+    refreshProducts({ classProduct: "none" });
+  };
+
   useEffect(() => {
     catSelect.length > 0 && refreshProducts({ classProduct: catSelect });
   }, [catSelect]);
@@ -29,7 +34,15 @@ const FilterClassProduct = ({ listFilter }) => {
   return (
     <div className="w-[20%] p-5">
       <div className="border-solid border-b-2 py-3 ">
-        <span className="font-semibold text-lg">Categoría</span>
+        <span className="font-semibold text-lg">Categoría</span>{" "}
+        {catSelect.length > 0 && (
+          <button
+            className="bg-[#AAABAB] text-sm text-slate-50 rounded-full px-2 shadow-inner"
+            onClick={clearClass}
+          >
+            Limpiar filtros
+          </button>
+        )}
       </div>
       <ul className="my-5">
         {listFilter.map((item) => (

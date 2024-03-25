@@ -17,15 +17,18 @@ const ContainerProduct = () => {
   const getFilterByClass = async () => {
     try {
       const res = await _fechProduct.filterByClass({ classProduct: "none" });
-      setProducts(res);      
+      setProducts(res);
     } catch (error) {
       openNotification("error", error);
     }
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-5">
-      {products.length > 0 && products.map((item) => <ProductMan product={item} key={crypto.randomUUID()} />)}
+    <div>
+      <div className="grid grid-cols-3 gap-4 p-5">
+        {products.length > 0 &&
+          products.map((item) => <ProductMan product={item} key={crypto.randomUUID()} />)}
+      </div>
     </div>
   );
 };
