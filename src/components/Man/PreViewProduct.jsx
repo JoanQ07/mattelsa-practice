@@ -12,7 +12,7 @@ const PreViewProduct = ({ closeModal, product }) => {
   const { listItems } = useCar();
 
   const loadItem = () => {
-    const validProduct = listItems.find((el) => el.id == product.id);
+    const validProduct = listItems.find((el) => el.id == product.id && el.sizeSelect == sizeSelect);
     if (validProduct)
       return openNotification(
         "info",
